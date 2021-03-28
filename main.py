@@ -27,7 +27,7 @@ else:
 
     number = input(
         f"{bcolors.HEADER}Number of numbers after the comma: {bcolors.ENDC}")
-    precision = input(f"{bcolors.HEADER}Precision (500): {bcolors.ENDC}")
+    precision = int(input(f"{bcolors.HEADER}Precision (500): {bcolors.ENDC}"))
 
     if number != "":
         if precision == "":
