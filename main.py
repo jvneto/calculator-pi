@@ -13,21 +13,28 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+print(
+    f'''{bcolors.HEADER}Operation modes: {bcolors.OKBLUE}
+    (1 -> Calculation Time)
+    (2 -> Console)
+    (3 -> Write To File){bcolors.ENDC}'''
+)
+mode = input(f'{bcolors.HEADER}Selected mode: {bcolors.OKBLUE} ')
 
-mode = input(f"{bcolors.HEADER}Operation mode: {bcolors.OKBLUE}\n(1 -> Calculation Time) \n(2 -> Console) \n(3 -> Write To File)\n{bcolors.ENDC}")
-if mode != '1' and mode != '2' and mode != '3':
-    print(f"{bcolors.FAIL}Incorrect Operating Mode!{bcolors.ENDC}")
+if mode not in ['1', '2', '3']:
+    print(f'{bcolors.FAIL}Incorrect Operating Mode!{bcolors.ENDC}')
 else:
 
     if mode == '3':
-        nameFile = input(f"{bcolors.HEADER}File Name: (pi.txt){bcolors.ENDC}")
+        file_name = input(f'{bcolors.HEADER}File Name (pi.txt): {bcolors.ENDC}')
+        file_name = file_name.strip('.txt')
 
     number = input(
-        f"{bcolors.HEADER}Number of numbers after the comma: {bcolors.ENDC}")
-    precision = int(input(f"{bcolors.HEADER}Precision (500): {bcolors.ENDC}"))
+        f'{bcolors.HEADER}Number of numbers after the comma: {bcolors.ENDC}')
+    precision = input(f'{bcolors.HEADER}Precision (500): {bcolors.ENDC}')
 
-    if number != "":
-        if precision == "":
+    if number != '':
+        if precision == '' or int(precision) > 500:
             precision = 500
 
         getcontext().prec = int(number)
@@ -37,7 +44,7 @@ else:
         pi = sum(1/Decimal(16)**k * (Decimal(4)/(8*k+1) -
                                      Decimal(2)/(8*k+4) -
                                      Decimal(1)/(8*k+5) -
-                                     Decimal(1)/(8*k+6)) for k in range(precision))
+                                     Decimal(1)/(8*k+6)) for k in range(int(precision)))
 
         if mode == '1':
             print(
@@ -45,10 +52,10 @@ else:
         elif mode == '2':
             print(f'{bcolors.OKCYAN}{pi}{bcolors.ENDC}')
         elif mode == '3':
-            if nameFile != "":
-                open(nameFile + '.txt', 'w').write(str(pi))
+            if file_name != '':
+                open(file_name + '.txt', 'w').write(str(pi))
                 print(
-                    f'{bcolors.WARNING}Created file path: {pathlib.Path(__file__).parent.absolute()}\{nameFile}.txt {bcolors.ENDC}')
+                    f'{bcolors.WARNING}Created file path: {pathlib.Path(__file__).parent.absolute()}\{file_name}.txt {bcolors.ENDC}')
             else:
                 open('pi.txt', 'w').write(str(pi))
                 print(
@@ -56,4 +63,4 @@ else:
             print(f'{bcolors.OKGREEN}Success! Saved to File.{bcolors.ENDC}')
     else:
         print(
-            f"{bcolors.FAIL}Number of numbers after the comma undefined!{bcolors.ENDC}")
+            f'{bcolors.FAIL}Number of numbers after the comma undefined!{bcolors.ENDC}')
