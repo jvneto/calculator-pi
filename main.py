@@ -2,9 +2,6 @@ from decimal import Decimal, getcontext
 import time
 import pathlib
 
-init_time = int(round(time.time()))
-
-
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -34,6 +31,8 @@ else:
             precision = 500
 
         getcontext().prec = int(number)
+
+        init_time = int(round(time.time()))
 
         pi = sum(1/Decimal(16)**k * (Decimal(4)/(8*k+1) -
                                      Decimal(2)/(8*k+4) -
