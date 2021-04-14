@@ -1,7 +1,7 @@
 # Calculator PI - PT_BR
 > Algoritmo para calcular o numero de PI, com qualquer quantidade de número depois da virgula.
 
-## Execultar
+## Executar
 
 ```sh
 python main.py
